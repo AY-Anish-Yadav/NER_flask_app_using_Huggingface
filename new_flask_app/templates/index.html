@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Named Entity Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Named Entity Recognition</h1>
+        <form action="/extract_entities" method="post">
+            <textarea name="text" rows="4" cols="50">{{ text if text else "" }}</textarea><br>
+            <input type="submit" value="Extract Entities">
+        </form>
+        {% if entities %}
+            <h2>Entities</h2>
+            <ul>
+                {% for entity in entities %}
+                    <li>{{ entity['word'] }} ({{ entity['entity'] }})</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
